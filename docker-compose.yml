@@ -1,0 +1,44 @@
+services:
+  ollama:
+    image: ollama/ollama:rocm
+    container_name: ollama
+    devices:
+      - "/dev/kfd"
+      - "/dev/dri"
+    ipc: host
+    group_add:
+      - video
+    volumes:
+      - /data/.ollama:/root/.ollama
+    ports:
+      - "11434:11434"
+    networks:
+      backend:
+        ipv4_address: 10.1.0.2
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:cuda
+    container_name: open-webui
+    environment:
+      OLLAMA_BASE_URL: http://10.1.0.2:11434
+    devices:
+      - "/dev/kfd"
+      - "/dev/dri"
+    ipc: host
+    group_add:
+      - video
+    volumes:
+      - /data/.open-webui:/app/backend/data
+    ports:
+      - "3000:8080"
+    networks:
+      backend:
+        ipv4_address: 10.1.0.3
+
+networks:
+  backend:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.1.0.0/16
+          gateway: 10.1.0.1

@@ -1,0 +1,18 @@
+{
+	"python.autoComplete.extraPaths": ["./src"],
+	"files.autoSave": "onFocusChange",
+	"cSpell.words": [],
+	"files.watcherExclude": {
+		"**/.git/objects/**": true,
+		"**/.git/subtree-cache/**": true,
+		"**/.venv/*/**": true
+	},
+	"python.defaultInterpreterPath": ".venv/bin/python",
+	"editor.formatOnSave": true,
+	"breadcrumbs.enabled": true,
+	"python.analysis.extraPaths": ["./src"],
+	"[python]": {
+		"editor.formatOnType": false,
+		"editor.formatOnSave": true
+	}
+}
