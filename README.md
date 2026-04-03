@@ -1,50 +1,51 @@
-# 🚀 Ollama + Open WebUI Docker Setup 🖥️
+# Ollama + Open WebUI Docker Setup
 
-Welcome to the **Ollama + Open WebUI Docker Setup** repository! This project provides a seamless way to deploy **Ollama** and **Open WebUI** using Docker Compose. Whether you're a developer, researcher, or just curious, this setup will get you up and running in no time! 🎉
+Docker Compose setup for running **Ollama** with **Open WebUI** on AMD GPUs (ROCm).
 
----
+## Services
 
-## 📦 Services Overview
+| Service | Image | Port |
+|---------|-------|------|
+| Ollama | `ollama/ollama:rocm` | `11434` |
+| Open WebUI | `ghcr.io/open-webui/open-webui:main` | `3000` |
 
-This setup includes two main services:
+## Prerequisites
 
-1. **Ollama** 🦙  
-   - **Image**: `ollama/ollama:rocm`  
-   - **Port**: `11434`  
-   - **Description**: Ollama is a powerful service for running large language models locally.  
+- Docker and Docker Compose
+- AMD GPU with ROCm drivers installed
+- `/dev/kfd` and `/dev/dri` devices available
 
-2. **Open WebUI** 🌐  
-   - **Image**: `ghcr.io/open-webui/open-webui:cuda`  
-   - **Port**: `3000` (mapped to `8080` inside the container)  
-   - **Description**: Open WebUI provides a user-friendly interface to interact with Ollama's models.  
+## Quick Start
 
----
+```bash
+git clone https://github.com/kabir0st/romc-ollama-docker/
+cd romc-ollama-docker
+docker compose up -d
+```
 
-## 🛠️ Prerequisites
+## Access
 
-Before you begin, ensure you have the following installed:
-- **Docker** 🐳  
-- **Docker Compose** 🐙  
-- **AMD GPU Drivers** (for ROCm support)  
+- **Open WebUI**: http://localhost:3000
+- **Ollama API**: http://localhost:11434
 
----
+## Pull a Model
 
-## 🚀 Quick Start
+```bash
+docker exec ollama ollama pull deepseek-r1:8b
+```
 
-1. **Clone this repository**:
-   ```bash
-   git clone https://github.com/kabir0st/romc-ollama-docker/
-   cd romc-ollama-docker
-    ```
-   
-2. **Start service**:
-   ```bash
-   docker compose up
-    ```
-   
-3. **Access the service**:
-   - Ollama API: http://10.1.0.2:11434
-   - Open WebUI: http://10.1.0.2:8080
+## Stop Services
 
----
+```bash
+docker compose down
+```
 
+To also remove stored data (models, conversations):
+
+```bash
+docker compose down -v
+```
+
+## Continue IDE Integration
+
+Copy `continue-config.json` to your Continue config directory to use Ollama as a local coding assistant.

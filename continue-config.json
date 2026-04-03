@@ -4,7 +4,7 @@
 			"title": "DeepSeek 8B",
 			"provider": "ollama",
 			"model": "deepseek-r1:8b",
-			"apiBase": "http://10.1.0.2:11434",
+			"apiBase": "http://localhost:11434",
 			"systemMessage": "You are a coding assistant."
 		}
 	],
@@ -12,7 +12,7 @@
 		"title": "DeepSeek 8B",
 		"provider": "ollama",
 		"model": "deepseek-r1:8b",
-		"apiBase": "http://10.1.0.2:11434",
+		"apiBase": "http://localhost:11434",
 		"systemMessage": "You are a coding assistant."
 	},
 	"contextProviders": [
